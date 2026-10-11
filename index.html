@@ -277,9 +277,13 @@ textarea{width:100%;height:92px;margin-top:12px;border:1px solid var(--line);bor
   var SHOTS={
     out:{src:'logged-out.jpg',w:1440,h:7056,hs:[
       {id:'login',label:'Join or Log In',x:1223,y:22,w:112,h:28,go:'new',pulse:false},
+      {id:'export',label:'Export (logs in)',x:1159,y:122,w:101,h:38,go:'new'},
+      {id:'save',label:'Save (logs in)',x:1272,y:122,w:88,h:38,go:'new'},
+      {id:'q1',label:'Get a quote from Paycom',x:474,y:299,w:118,h:40,quote:'Paycom'},
+      {id:'q2',label:'Get a quote from Paylocity',x:1025,y:299,w:118,h:40,quote:'Paylocity'},
       {id:'cust',label:'Customize Comparison (logs in)',x:1134,y:405,w:202,h:39,go:'new',thenWiz:true,pulse:true}
     ].concat([[257,698,550,87],[808,698,551,87],[257,785,550,88],[808,785,551,88],[257,873,550,76],[808,873,551,76],[257,949,550,68],[808,949,551,68],[310,1784,415,120],[257,3196,550,122],[808,3196,551,122],[257,3318,550,122],[808,3318,551,122],[257,3440,550,122],[808,3440,551,122],[257,3562,550,148],[808,3562,551,148],[257,3710,550,98],[808,3710,551,98],[257,3808,550,168],[808,3808,551,168],[257,3976,550,102],[808,3976,551,102],[257,4078,550,122],[808,4078,551,122],[257,4200,550,100],[808,4200,551,100],[257,4300,550,122],[808,4300,551,122]].map(function(c){return {blur:true,label:'Sign in to view',x:c[0],y:c[1],w:c[2],h:c[3],go:'new'}})),
-    hint:'Customize Comparison logs you in and opens the wizard. Join or Log In and Sign in to view on the blurred areas only log you in.'},
+    hint:'Customize Comparison logs you in and opens the wizard. Join or Log In, Export, Save and Sign in to view only log you in. Get a quote opens the lead form.'},
     'new':{src:'logged-in-new.jpg',w:1440,h:7033,hs:[
       {id:'cust',label:'Customize Comparison',x:1134,y:405,w:202,h:39,wiz:true,pulse:true}
     ],hint:'Click Customize Comparison to open the wizard. Submitting it shows the customized page.'},
@@ -372,7 +376,7 @@ textarea{width:100%;height:92px;margin-top:12px;border:1px solid var(--line);bor
     stickyEl.style.left=(sr.left+(c.pageX-c.cardX*k)*s)+'px';
     stickyEl.style.top=top+'px';
     var sh=document.getElementById('stkhs'),sw=c.w*k*s;
-    sh.hidden=!(show&&state==='future');
+    sh.hidden=!(show&&(state==='future'||state==='out'));
     sh.style.left=stickyEl.style.left;sh.style.top=top+'px';sh.style.width=sw+'px';sh.style.height=(c.h*k*s)+'px';
     if(!sh.children.length)[['Paycom',553,34,103,32],['Paylocity',1061,34,103,32]].forEach(function(q){
       var b=el('button','hs');b.type='button';b.setAttribute('aria-label','Get a quote from '+q[0]);
